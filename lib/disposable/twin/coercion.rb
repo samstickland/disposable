@@ -18,7 +18,7 @@ module Disposable::Twin::Coercion
     end
 
     def coercing_setter!(name, type, nilify=false)
-     type = type ? (DRY_TYPES_CONSTANT::Nil | type) : DRY_TYPES_CONSTANT::Nil if nilify
+     type = type ? (type | Types::Nominal::Nil) : Types::Nominal::Nil if nilify
 
       mod = Module.new do
         define_method("#{name}=") do |value|
